@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository("contactRespository")
 public interface ContactRepository extends JpaRepository<Contact, Serializable> {
+    public abstract Contact findById(int id);
 
 }

@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Table(name = "contact")
 public class Contact {
 
-    @GeneratedValue()
     @Id
+    @GeneratedValue()
     @Column(name = "id")
     private int id;
     @Column(name = "firstname")
@@ -19,6 +19,15 @@ public class Contact {
     private String telephone;
     @Column(name = "city")
     private String city;
+    private Number telefono;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFirstname() {
         return firstname;
@@ -66,4 +75,14 @@ public class Contact {
     }
 
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

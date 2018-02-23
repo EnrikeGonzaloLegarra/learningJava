@@ -4,7 +4,15 @@ public class UserCredential {
 
     private String username;
     private String password;
+    private String telefono;
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
     public String getUsername() {
         return username;
@@ -22,9 +30,10 @@ public class UserCredential {
         this.password = password;
     }
 
-    public UserCredential(String username, String password) {
+    public UserCredential(String username, String password,String telefono) {
         this.username = username;
         this.password = password;
+        this.telefono = telefono;
     }
 
     public UserCredential() {
@@ -35,6 +44,7 @@ public class UserCredential {
         return "UserCredential{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", telefono='" + telefono + '\'' +
                 '}';
     }
 }

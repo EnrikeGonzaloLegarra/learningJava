@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -28,7 +25,8 @@ public class ContactController {
 
     @GetMapping("/cancel")
     public String cancel() {
-        return ViewConstant.CONTACTS;
+        showContacts();
+        return "redirect:/contacts/showcontacts";
     }
 
     @GetMapping("/contactform")
@@ -47,14 +45,24 @@ public class ContactController {
         } else {
             model.addAttribute("result", 0);
         }
-        return ViewConstant.CONTACTS;
+        showContacts();
+        return "redirect:/contacts/showcontacts";
     }
 
     @GetMapping("/showcontacts")
     public ModelAndView showContacts() {
         ModelAndView mav = new ModelAndView(ViewConstant.CONTACTS);
         mav.addObject("contacts", contactService.listAllContacts());
-        LOG.info("JUANTXO " + mav);
+        LOG.info("/SHOWCONTACTS EN CONTACTCONTROLLER MAV ----> " + mav);
         return mav;
     }
+
+    @GetMapping("/removecontact")
+    public ModelAndView removeContact(@RequestParam(name = "id", required = true) int id) {
+        contactService.removeContact(id);
+        return showContacts();
+    }
+
+
+
 }
